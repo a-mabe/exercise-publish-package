@@ -6,25 +6,27 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - working-directory: ./sample-packages/npm
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 12
-      - run: cd sample-packages/npm && npm install
-      - run: cd sample-packages/npm && npm ci
-      - run: cd sample-packages/npm && npm test
+      - run: npm install
+      - run: npm ci
+      - run: npm test
 
   publish-gpr:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - working-directory: ./sample-packages/npm
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
-      - run: cd sample-packages/npm && npm install
-      - run: cd sample-packages/npm && npm ci
-      - run: cd sample-packages/npm && npm publish
+      - run: npm install
+      - run: npm ci
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
