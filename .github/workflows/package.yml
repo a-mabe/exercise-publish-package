@@ -5,8 +5,10 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./sample-packages/npm
     steps:
-      - working-directory: ./sample-packages/npm
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -19,7 +21,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - working-directory: ./sample-packages/npm
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
