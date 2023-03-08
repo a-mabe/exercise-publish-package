@@ -31,6 +31,9 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - run: npm install
       - run: npm ci
+      - run: |
+          echo @a-mabe:https://npm.pkg.github.com/ > build/.npmrc
+          echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' >> build/.npmrc
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_TOKEN: ${{secrets.GITHUB_TOKEN}}
