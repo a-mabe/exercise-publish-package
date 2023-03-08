@@ -1,3 +1,5 @@
 {
-  "your": "json config here"
+  "your": "json config here",
+  "name": "deployFrontEnd",
+  "version": "1.0.0"
 }
